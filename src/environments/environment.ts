@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost/blog/'
+  baseUrl: 'http://localhost/ricms_backend/'
 };
 
 /*
