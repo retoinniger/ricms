@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-9">
+        <h1>{{title}}</h1>
+    </div>
+    <div class="col-3 text-right"><a [routerLink]="['/admin/blogs/create']" class="btn btn-default">Blog erstellen</a>
+    </div>
+</div>
+<hr />
+<table class="table table-bordered table-striped mt-5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Bild</th>
+            <th>Titel</th>
+            <th>Ist Aktiv</th>
+            <th>Auf Startseite</th>
+            <th>Aktion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let blog of blogs">
+            <th>{{blog.id}}</th>
+            <td><img src="{{blog.image}}" alt="{{blog.image_alt}}" style="max-width: 150px"></td>
+            <td>{{blog.title}}</td>
+            <td>
+                <div *ngIf="blog.is_active == true; else notActive">
+                    <i class="fa fa-check text-success" aria-hidden="true"></i>
+                    <span class="sr-only">Aktiv</span>
+                </div>
+                <ng-template #notActive>
+                    <i class="fa fa-times text-danger" aria-hidden="true"></i>
+                    <span class="sr-only">Inaktiv</span>
+                </ng-template>
+            </td>
+            <td>
+                <div *ngIf="blog.is_featured == true; else notFeatured">
+                    <i class="fa fa-check text-success" aria-hidden="true"></i>
+                    <span class="sr-only">Ja</span>
+                </div>
+                <ng-template #notFeatured>
+                    <i class="fa fa-times text-danger" aria-hidden="true"></i>
+                    <span class="sr-only">Nein</span>
+                </ng-template>
+            </td>
+            <td class="action">
+                <a [routerLink]="['/admin/blogs/edit', blog.id]" class="btn btn-info btn-sm"><i
+                        class="fa fa-pencil"></i><span class="sr-only">Bearbeiten</span></a>
+                <a (click)="onDelete(blog.id)" class="btn btn-danger btn-sm text-white"><i class="fa fa-trash"></i><span
+                        class="sr-only">Löschen</span></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{{error}}

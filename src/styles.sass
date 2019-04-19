@@ -1,0 +1,48 @@
+@import "~codemirror/lib/codemirror.css"
+@import "~codemirror/theme/eclipse.css"
+    
+.card-block
+    padding: 1rem
+
+.card
+    background-color: #FFF
+    border: 1px solid rgba(50,100,110,1.0)
+    margin: 1.5rem 0
+
+.btn.btn-default 
+    background-color: rgba(50,100,110,1.0)
+    color: #fff
+    border-radius: 0
+    border: none
+    padding: 1rem 1.2rem
+    font-size: 13px
+    font-weight: 600
+
+.shadow 
+    box-shadow: 1px 1px 7px #ddd
+
+.form-group 
+    position: relative
+    margin-bottom: 1.5rem
+
+.form-control-placeholder 
+    position: absolute
+    top: 0
+    padding: 7px 0 0 13px
+    transition: all 200ms
+    opacity: 0.6
+
+
+.form-control:focus + .form-control-placeholder,
+.form-control:not(.ng-invalid) + .form-control-placeholder
+    font-size: 75%
+    transform: translate3d(0, -100%, 0)
+    opacity: 1
+
+input, textarea 
+    border: 0 !important
+    outline: 0 !important
+    border-radius: 0 !important
+    border-bottom: 2px solid rgba(50,100,110,1.0) !important
+    &.is-invalid
+        border-bottom: 2px solid rgba(255,0,0,1.0) !important

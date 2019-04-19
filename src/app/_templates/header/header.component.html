@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-md bg-light">
+    <div class="container">
+        <a class="navbar-brand" routerLink="/" routerLinkActive="acc" [routerLinkActiveOptions]="{exact: true}"
+            #home="routerLinkActive" [attr.aria-current]="home.isActive" (click)="setPageTitle('RICMS')">
+            <span class="h1">RI CMS</span>
+        </a>
+        <button class="navbar-toggler" type="button" (click)="toggleNavbar()" [attr.aria-expanded]="this.navbarOpen">
+            <span class="navbar-toggler-icon" aria-hidden="true"></span>
+            <span class="sr-only">Mobile navigation</span>
+        </button>
+        <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" *ngFor="let page of pageNavs">
+                    <div *ngIf="page.is_active == 1">
+                        <a routerLink="/page/{{page.slug}}" routerLinkActive="active" class="nav-link"
+                            (click)="setPageTitle(page.title + ' | ' + 'RICMS' ); toggleNavbar()" #routeActive="{{page.slug}}"
+                            #routeActive="routerLinkActive"
+                            [attr.aria-current]="routeActive.isActive">{{ page.title }}</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/contact" routerLinkActive="active" class="nav-link" (click)="toggleNavbar()"
+                        #contact="routerLinkActive" [attr.aria-current]="contact.isActive">Kontakt</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/blog" routerLinkActive="active" class="nav-link" (click)="toggleNavbar()"
+                        #blog="routerLinkActive" [attr.aria-current]="blog.isActive">Blog</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav  ml-auto">
+                <li class="nav-item" *ngIf="!checkLogin()">
+                    <a routerLink="/login" routerLinkActive="active" class="nav-link" #login="routerLinkActive"
+                        [attr.aria-current]="login.isActive">Login</a>
+                </li>
+                <li class="nav-item" *ngIf="checkLogin()">
+                    <a routerLink="/admin" routerLinkActive="active" class="nav-link" #admin="routerLinkActive"
+                        [attr.aria-current]="admin.isActive">Admin Dashboard</a>
+                </li>
+                <li class="nav-item" *ngIf="checkLogin()">
+                    <a routerLink="/login" class="nav-link">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-12">
+        <h1>{{pageTitle}}</h1>
+    </div>
+</div>
+<hr>
+<div class="blog-form mt-5">
+    <form [formGroup]="pageForm" (ngSubmit)="onSubmit()">
+        <div class="form-group form-row">
+            <label class="col-md-3" for="title">Titel * <span class="sr-only">Pflichtfeld</span></label>
+            <div class="col-md-9">
+                <input type="text" formControlName="title" class="form-control" id="title" required
+                    aria-describedby="errTitle">
+                <div *ngIf="title.invalid && (title.dirty || title.touched)" class="error" id="errTitle">
+                    <div *ngIf="title.errors">
+                        Der Titel ist ein Pflichtfeld.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3" for="slug">Slug * <span class="sr-only">Pflichtfeld</span></label>
+            <div class="col-md-9">
+                <input type="text" formControlName="slug" class="form-control" id="slug" required
+                    aria-describedby="errSlug">
+                <div *ngIf="slug.invalid && (slug.dirty || slug.touched)" class="text-danger" id="errSlug">
+                    <div *ngIf="slug.errors">
+                        Slug ist ein Pflichtfeld.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="col-form-label col-md-3 pt-0">Auf Startseite</legend>
+                <div class="col-md-9">
+                    <div class="form-check">
+                        <input type="radio" formControlName="is_active" value="1" id="isactiveYes"
+                            class="form-check-input" />
+                        <label for="isactiveYes" class="form-check-label">Ja</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" formControlName="is_active" value="0" id="isactiveNo"
+                            class="form-check-input" />
+                        <label for="isactiveNo" class="form-check-label">Nein</label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group row">
+            <label class="col-md-3">Beschreibung (Inhalt) <span class="required">*</span></label>
+            <div class="col-md-9">
+                <ckeditor [editor]="Editor" formControlName="description" [editor]="Editor" [config]="editorConfig">
+                </ckeditor>
+                <div *ngIf="description.invalid && (description.dirty || description.touched)" class="error">
+                    <div *ngIf="description.errors">
+                        Die Beschreibung ist ein Pflichtfeld.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-9 offset-md-3">
+                <input type="hidden" formControlName="id">
+                <button type="submit" [disabled]="!pageForm.valid" class="btn btn-primary">Speichern</button>
+            </div>
+        </div>
+    </form>
+</div>
+{{error}}

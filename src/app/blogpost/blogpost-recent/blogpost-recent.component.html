@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-12">
+        <h3>Neuste Blogs</h3>
+    </div>
+</div>
+
+<div *ngFor="let blog of blogs">
+    <a [routerLink]="['/blog', blog.id]" (click)="setPageTitle(blog.title + ' | RICMS')">
+        <div class="card p-1">
+            <div class="row align-items-center">
+                <div class="col-5">
+                    <img class="w-100" src="{{blog.image}}" alt="" />
+                </div>
+                <div class="col-7">
+                    <h4 class="h6">{{blog.title}}</h4>
+                    <p>Veröffentlicht am: {{blog.created_at | date:'dd.MM.yyyy'}}</p>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="service-error" *ngIf="error">
+    <h3>{{error.errorTitle}}</h3>
+    <p>{{error.errorDesc}}<p>
+</div>

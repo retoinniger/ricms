@@ -1,0 +1,105 @@
+<div class="row">
+    <div class="col-12">
+        <h1>{{pageTitle}}</h1>
+    </div>
+</div>
+<hr>
+<div class="blog-form mt-5">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="form-group form-row">
+            <label class="col-md-3" for="username">Benutzername * <span class="sr-only">Pflichtfeld</span></label>
+            <div class="col-md-9">
+                <input type="text" formControlName="username" class="form-control" id="username" required
+                    aria-describedby="errTitle">
+                <div class="text-danger" *ngIf="username.invalid && (username.dirty || username.touched)" id="username">
+                    <span *ngIf="username.errors">
+                        Der Benutzername ist ein Pflichtfeld.
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3" for="first_name">Vorname</label>
+            <div class="col-md-9">
+                <input type="text" formControlName="first_name" class="form-control" id="first_name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3" for="last_name">Nachname</label>
+            <div class="col-md-9">
+                <input type="text" formControlName="last_name" class="form-control" id="last_name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3" for="email">E-Mail * <span class="sr-only">Pflichtfeld</span></label>
+            <div class="col-md-9">
+                <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="errEmail"
+                    required>
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" id="errEmail" class="text-danger">
+                    <span *ngIf="email.errors.required">Die E-Mail Adresse ist ein Pflichtfeld.</span>
+                    <span *ngIf="email.errors.email">Geben Sie eine gültige E-Mail Adresse ein</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3" for="password">Passwort * <span class="sr-only">Pflichtfeld</span></label>
+            <div class="col-md-9">
+                <input type="password" formControlName="password" class="form-control" id="password"
+                    aria-describedby="errPass" required minlength="8">
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" id="errPass" class="text-danger">
+                    <span *ngIf="password.errors.required">Das Passwort ist ein Pflichtfeld.</span>
+                    <span *ngIf="password.errors.minlength">Das Passwort muss minestens 8 zeichen enthalten.</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3" for="confirmPassword">Passwort wiederhohlen</label>
+            <div class="col-md-9">
+                <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPassword"
+                    aria-describedby="errConf">
+                <span class="text-danger" *ngIf="userForm.value.password !== userForm.value.confirmPassword"
+                    id="errConf">
+                    Die Passwörter stimmen nicht überein.
+                </span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3" for="roles">Rolle</label>
+            <div class="col-md-9">
+                <select formControlName="roles" class="form-control" id="roles">
+                    <option value="user" >
+                        Benutzer
+                    </option>
+                    <option value="admin" >
+                        Administrator
+                    </option>
+                </select>
+            </div>
+        </div>
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="col-form-label col-md-3 pt-0">Ist aktiv</legend>
+                <div class="col-md-9">
+                    <div class="form-check">
+                        <input type="radio" formControlName="is_active" value="1" id="isactiveYes"
+                            class="form-check-input" />
+                        <label for="isactiveYes" class="form-check-label">Ja</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" formControlName="is_active" value="0" id="isactiveNo"
+                            class="form-check-input" />
+                        <label for="isactiveNo" class="form-check-label">Nein</label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group row">
+            <div class="col-md-9 offset-md-3">
+                <input type="hidden" formControlName="id">
+                <button type="submit" [disabled]="!userForm.valid" class="btn btn-primary">Speichern</button>
+            </div>
+        </div>
+    </form>
+</div>
+{{error}}

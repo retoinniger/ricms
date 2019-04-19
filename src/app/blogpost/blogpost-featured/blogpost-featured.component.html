@@ -1,0 +1,19 @@
+<div class="container pt-5 mt-5">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let blog of blogs">
+            <div class="card text-center shadow">
+                <img class="card-img-top" src="{{blog.image}}" alt="" />
+                <div class="card-block">
+                    <h3 class="card-title">{{blog.title}}</h3>
+                    <p class="card-text">von {{blog.author}} erstellt am {{blog.created_at | date:'mediumDate'}}</p>
+                    <p class="card-text">{{blog.short_desc}}</p>
+                    <a [routerLink]="['/blog', blog.id]" (click)="setPageTitle(blog.title + ' | RICMS')" class="btn btn-default">Mehr lesen...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="service-error" *ngIf="error">
+        <h1>{{error.errorTitle}}</h1>
+        <h3>{{error.errorDesc}}</h3>
+    </div>
+</div>

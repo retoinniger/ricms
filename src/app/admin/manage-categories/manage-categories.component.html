@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-9">
+        <h1>{{title}}</h1>
+    </div>
+    <div class="col-3 text-right">
+        <a [routerLink]="['/admin/categories/create']" class="btn btn-default">Kategorie erstellen</a>
+    </div>
+</div>
+<hr />
+<table class="table table-bordered table-striped mt-5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Aktion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let category of categories">
+            <th>{{category.id}}</th>
+            <td>{{category.category_name}}</td>
+            <td class="action">
+                <a [routerLink]="['/admin/categories/edit', category.id]" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i><span class="sr-only">Bearbeiten</span></a>
+                <a (click)="onDelete(category.id)" class="btn btn-danger btn-sm text-white"><i class="fa fa-trash"></i><span class="sr-only">Löschen</span></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{{error}}

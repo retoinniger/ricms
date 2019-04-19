@@ -1,0 +1,57 @@
+<div class="container mt-5 pt-5">
+    <div class="page-desc" [hidden]="submitted">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1>Kontakt</h1>
+                <form class="mt-5" (ngSubmit)="onSubmit()" #contactForm="ngForm">
+                    <div class="form-group">
+                        <input type="text" name="name" id="name" [(ngModel)]="model.name" class="form-control" required
+                            #name="ngModel" aria-describedby="errName" [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched)}">
+                        <label for="name" class="form-control-placeholder">Name</label>
+                        <div class="mt-1 text-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+                            <span class="mt-1 text-danger" *ngIf="name.errors.required" id="errName">
+                                Der Name ist ein Pflichtfeld.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group mt-5">
+                        <input type="email" name="email" id="email" [(ngModel)]="model.email" class="form-control"
+                            required email #email="ngModel" aria-describedby="errMail" [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched)}">
+                        <label for="email" class="form-control-placeholder">E-Mail</label>
+                        <div class="mt-1 text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                            <span *ngIf="email.errors.required" id="errMail">Die E-Mail ist ein Pflichtfeld.</span>
+                            <span *ngIf="email.errors.email" id="errMail">Geben Sie eine gültige E-Mail Adresse ein.</span>
+                        </div>
+                    </div>
+                    <div class="form-group mt-5">
+                        <input type="tel" name="phone" id="phone" [(ngModel)]="model.phone" class="form-control" #phone="ngModel">
+                        <label for="phone" class="form-control-placeholder">Telefon</label>
+                    </div>
+                    <div class="form-group mt-5">
+                        <textarea name="message" id="message" [(ngModel)]="model.message" rows="5" class="form-control"
+                            required #message="ngModel" aria-describedby="errMsg" [ngClass]="{'is-invalid': message.invalid && (message.dirty || message.touched)}"></textarea>
+                        <label for="message" class="form-control-placeholder">Nachricht</label>
+                        <div class="mt-1 text-danger" *ngIf="message.invalid && (message.dirty || message.touched)">
+                            <span *ngIf="message.errors.required" id="errMsg">Die Nachricht darf nicht leer sein.</span>
+                        </div>
+                    </div>
+                    <div class="form-group mt-5">
+                        <button [disabled]="!contactForm.form.valid" class="btn btn-default">Senden</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-danger mt-5" *ngIf="error">
+        <h1>{{error.errorTitle}}</h1>
+        <h3>{{error.errorDesc}}</h3>
+    </div>
+    <div [hidden]="!submitted" class="contact-message">
+        <div *ngIf="model.id" class="alert alert-success">
+            <h2 class="success">Erfolgreich!</h2>
+            <p>Die Nachricht wurde erfolgreich übermittelt.</p>
+            <br />
+            <button (click)="gotoHome()" class="btn btn-default">zur Startseite</button>
+        </div>
+    </div>
+</div>
