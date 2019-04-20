@@ -9,7 +9,9 @@
         <div class="card p-1">
             <div class="row align-items-center">
                 <div class="col-5">
-                    <img class="w-100" src="{{blog.image}}" alt="" />
+                    <div *ngIf="blog.image">
+                        <img class="w-100" src="{{blog.image}}" alt="" />
+                    </div>
                 </div>
                 <div class="col-7">
                     <h4 class="h6">{{blog.title}}</h4>
