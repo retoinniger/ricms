@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BlogpostRoutingModule } from './blogpost-routing.module';
-import { BlogpostFeaturedComponent } from './blogpost-featured/blogpost-featured.component';
+import { BlogpostHomeComponent } from './blogpost-home/blogpost-home.component';
 import { BlogpostListComponent } from './blogpost-list/blogpost-list.component';
 import { BlogpostDetailComponent } from './blogpost-detail/blogpost-detail.component';
 import { BlogpostRecentComponent } from './blogpost-recent/blogpost-recent.component';
@@ -14,8 +14,8 @@ import { CategoriesComponent } from './categories/categories.component';
     BlogpostRoutingModule
   ],
   exports: [
-    BlogpostFeaturedComponent
+    BlogpostHomeComponent
   ],
-  declarations: [BlogpostFeaturedComponent, BlogpostListComponent, BlogpostDetailComponent, BlogpostRecentComponent, CategoriesComponent]
+  declarations: [BlogpostHomeComponent, BlogpostListComponent, BlogpostDetailComponent, BlogpostRecentComponent, CategoriesComponent]
 })
 export class BlogpostModule { }

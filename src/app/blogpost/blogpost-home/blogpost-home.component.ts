@@ -4,11 +4,11 @@ import { Blogpost } from '../blogpost';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-    selector: 'app-blogpost-featured',
-    templateUrl: './blogpost-featured.component.html',
-    styleUrls: ['./blogpost-featured.component.sass']
+    selector: 'app-blogpost-home',
+    templateUrl: './blogpost-home.component.html',
+    styleUrls: ['./blogpost-home.component.sass']
 })
-export class BlogpostFeaturedComponent implements OnInit {
+export class BlogpostHomeComponent implements OnInit {
 
     blogs: Blogpost;
     error: {};
